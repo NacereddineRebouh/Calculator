@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="images\1.jpg" />
+    <None Remove="images\Maximize.png" />
+    <None Remove="images\Minimize.png" />
     <None Remove="moon.jpg" />
   </ItemGroup>
 
@@ -16,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\1.jpg" />
+    <Resource Include="images\Maximize.png" />
+    <Resource Include="images\Minimize.png" />
   </ItemGroup>
 
 </Project>
