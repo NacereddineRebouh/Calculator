@@ -10,9 +10,13 @@
     MinWidth="350"
     MinHeight="600"
     AllowsTransparency="True"
-    ResizeMode="CanResizeWithGrip"
+    ResizeMode="CanResize"
+    WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
     <Window.Background>
         <!--
             MinWidth="350"
@@ -75,12 +79,20 @@
                     <RowDefinition Height="1.2*" />
                 </Grid.RowDefinitions>
 
+                <!--  //Title Area//  -->
                 <Label
                     Grid.ColumnSpan="2"
                     Margin="8,0,0,0"
                     VerticalAlignment="Center"
                     Content="Calculatrice"
                     FontSize="12" />
+                <!--  //Drag area//  -->
+                <Grid
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    Background="Transparent"
+                    MouseDown="WindowDrag" />
+                <!--  //Control Buttons area//  -->
                 <Grid
                     Grid.Row="0"
                     Grid.Column="3"
@@ -120,6 +132,31 @@
                         Style="{StaticResource Exit}" />
                 </Grid>
 
+                <!--  //Menu & history area//  -->
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource btn_Menu}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="Standard"
+                    FontSize="25"
+                    FontWeight="DemiBold" />
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Style="{StaticResource btn_OnTop}" />
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Style="{StaticResource btn_hist}" />
+
             </Grid>
 
 
@@ -130,7 +167,7 @@
                 Margin="10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Content="{Binding Path=Test}"
+                Content="10"
                 FontSize="50"
                 FontWeight="Bold" />
 

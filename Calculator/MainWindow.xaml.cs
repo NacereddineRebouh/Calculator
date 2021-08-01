@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Calculator
 {
@@ -9,26 +11,34 @@ namespace Calculator
     {
 
 
-
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
-            string Test = "mew";
-            bool Max = true;
+
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            meow2.Content = "f";
+            //-----------Access window.xaml template's elements-----------//
+
+
+            ControlTemplate i = Full.Template;
+            Image image = i.FindName("btn_Image", Full) as Image;
+
+
+            string max = "/images/Maximize.png";
+            string min = "/images/Minimize.png";
+
+            //-----------------------------------------------------------//
+
             Button srcButton = e.Source as Button;
-            _ = MessageBox.Show(srcButton.Name);
             switch (srcButton.Name)
             {
                 case "Min":
                     // Minimize Window
-                    meow2.Content = "1";
+
                     WindowState = WindowState.Minimized;
                     break;
 
@@ -37,17 +47,15 @@ namespace Calculator
 
                     if (WindowState == WindowState.Maximized)
                     {
-                        meow2.Content = "2";
-                        MainWindow.Max = false;
+
+                        image.Source = new BitmapImage(new Uri(max, UriKind.RelativeOrAbsolute));
                         //srcButton.FindName("image22") = new BitmapImage(new Uri("yor image uri"));
                         WindowState = WindowState.Normal;
-
-
                     }
                     else
                     {
-                        meow2.Content = "3";
-                        Max = true;
+
+                        image.Source = new BitmapImage(new Uri(min, UriKind.RelativeOrAbsolute));
                         WindowState = WindowState.Maximized;
 
 
@@ -64,6 +72,12 @@ namespace Calculator
             }
 
 
+        }
+
+        private void WindowDrag(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("meow");
+            this.DragMove();
         }
 
 

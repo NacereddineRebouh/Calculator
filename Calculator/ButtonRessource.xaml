@@ -4,7 +4,8 @@
     xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
     xmlns:local="clr-namespace:Calculator">
 
-    <local:TextButtonConverter x:Key="textButtonConverter" />
+
+
 
 
     <Style x:Key="baseStyle" TargetType="Button">
@@ -32,82 +33,7 @@
         </Setter>
     </Style>
 
-    <Style
-        x:Key="Maximize"
-        BasedOn="{StaticResource BaseControlButtons}"
-        TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Border Background="{TemplateBinding Background}" />
-                        <!--<TextBlock
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="{TemplateBinding FontSize}"
-                            FontWeight="{TemplateBinding FontWeight}"
-                            Text="{TemplateBinding Content}" />-->
-                        <!--<Image
-                            Name="image"
-                            Width="25"
-                            Height="25"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Source="/images/Minimize.png" />-->
 
-                        <Image
-                            x:Name="image22"
-                            Width="25"
-                            Height="25"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                            <Image.Style>
-                                <Style TargetType="{x:Type Image}">
-                                    <Setter Property="Image.Source" Value="/images/Minimize.png" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=Max}" Value="False">
-                                            <Setter Property="Image.Source" Value="/images/Maximize.png" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=Max}" Value="True">
-                                            <Setter Property="Image.Source" Value="/images/Minimize.png" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-
-
-                    </Grid>
-                    <!--<ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="image" Property="Source" Value="/images/Maximize.png" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="True">
-                            <Setter TargetName="image" Property="Source" Value="/images/Minimize.png" />
-                        </Trigger>
-
-                    </ControlTemplate.Triggers>-->
-
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.Setters>
-                    <Setter Property="Background" Value="#9D9D9D" />
-                </Trigger.Setters>
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="False">
-                <Trigger.Setters>
-                    <Setter Property="Background" Value="#FFB7B8B7" />
-                </Trigger.Setters>
-            </Trigger>
-        </Style.Triggers>
-        <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
-
-    </Style>
     <Style
         x:Key="Minimize"
         BasedOn="{StaticResource BaseControlButtons}"
@@ -143,6 +69,65 @@
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="Maximize"
+        BasedOn="{StaticResource BaseControlButtons}"
+        TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Name="list" TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" />
+                        <!--<TextBlock
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Text="{TemplateBinding Content}" />-->
+                        <!--<Image
+                            Name="image"
+                            Width="25"
+                            Height="25"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Source="/images/Minimize.png" />-->
+
+                        <Image
+                            x:Name="btn_Image"
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style>
+                                    <Setter Property="Image.Source" Value="/images/Maximize.png" />
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+
+                    </Grid>
+
+
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#9D9D9D" />
+                </Trigger.Setters>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#FFB7B8B7" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+        <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
+
     </Style>
     <Style x:Key="Exit" TargetType="Button">
         <!--<EventSetter Event="MouseLeftButtonDown" Handler="Exit_MouseLeftButtonDown" />-->
@@ -181,7 +166,278 @@
     </Style>
     <!--  **********************       **********************  -->
 
+    <!--  **************************Menu &  history Buttons***************************  -->
+    <Style x:Key="btn_hist" TargetType="Button">
+        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid" Background="{TemplateBinding Background}">
+                        <Rectangle x:Name="rectangle" Fill="{TemplateBinding Background}" />
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding Background}"
+                            BorderThickness="1" />
+                        <Image
+                            x:Name="btn_Image"
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style>
+                                    <Setter Property="Image.Source" Value="/images/History.png" />
+                                </Style>
+                            </Image.Style>
+                        </Image>
 
+                        <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#9D9D9D"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#808080"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect
+                                        BlurRadius="10"
+                                        Opacity="1"
+                                        ShadowDepth="1"
+                                        Color="#9D9D9D" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#9D9D9D" />
+                </Trigger.Setters>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#FFB7B8B7" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+        <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
+
+    </Style>
+    <Style x:Key="btn_OnTop" TargetType="Button">
+        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid" Background="{TemplateBinding Background}">
+                        <Rectangle x:Name="rectangle" Fill="{TemplateBinding Background}" />
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding Background}"
+                            BorderThickness="1" />
+                        <Image
+                            x:Name="btn_Image"
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style>
+                                    <Setter Property="Image.Source" Value="/images/OnTop.png" />
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#9D9D9D"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#808080"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect
+                                        BlurRadius="10"
+                                        Opacity="1"
+                                        ShadowDepth="1"
+                                        Color="#9D9D9D" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#9D9D9D" />
+                </Trigger.Setters>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#FFB7B8B7" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+        <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
+
+    </Style>
+    <Style x:Key="btn_Menu" TargetType="Button">
+        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid" Background="{TemplateBinding Background}">
+                        <Rectangle x:Name="rectangle" Fill="{TemplateBinding Background}" />
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding Background}"
+                            BorderThickness="1" />
+                        <Image
+                            x:Name="btn_Image"
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style>
+                                    <Setter Property="Image.Source" Value="/images/Menu_64.png" />
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <!--<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#9D9D9D"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#808080"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect
+                                        BlurRadius="10"
+                                        Opacity="1"
+                                        ShadowDepth="1"
+                                        Color="#9D9D9D" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="rectangle"
+                                        Storyboard.TargetProperty="Fill.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                    <ColorAnimation
+                                        Storyboard.TargetName="border"
+                                        Storyboard.TargetProperty="BorderBrush.Color"
+                                        To="#FFB7B8B7"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#9D9D9D" />
+                </Trigger.Setters>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Background" Value="#FFB7B8B7" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+        <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
+
+    </Style>
+    <!--  **********************       **********************  -->
     <Style x:Key="mz" TargetType="Button">
         <Setter Property="Background" Value="#FFB7B8B7" />
         <Setter Property="FontWeight" Value="DemiBold" />
@@ -384,7 +640,7 @@
                             Name="Formula"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Formula="{Binding ElementName=meow, Path=Text, Converter={StaticResource textButtonConverter}}"
+                            Formula="{Binding ElementName=meow, Path=Text}"
                             SelectionBrush="Black"
                             SnapsToDevicePixels="True"
                             SystemTextFontName="Arial" />
