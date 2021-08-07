@@ -1,0 +1,74 @@
+﻿<UserControl
+    x:Class="Calculator.userControls.SideMenuControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Calculator.userControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="MyuserControl"
+    Width="260"
+    Height="{Binding Path=SetHeight, ElementName=MyuserControl}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="border" TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        BlurRadius="19"
+                        Opacity="0.9"
+                        ShadowDepth="-10"
+                        Color="#FFA4A0A0" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush
+            x:Key="Main_Color"
+            Opacity="1"
+            Color="#FFCDCDCD" />
+    </UserControl.Resources>
+
+    <Grid
+        x:Name="BaseGrid"
+        MinWidth="260"
+        HorizontalAlignment="Center"
+        Background="Transparent">
+
+
+        <!--<Rectangle
+                x:Name="sideMenu1"
+                Width="{Binding SetWidth2}"
+                Height="45"
+                Margin="38.4,0,0,0"
+                HorizontalAlignment="Left"
+                Fill="{StaticResource Main_Color}" />-->
+        <Grid
+            x:Name="sideMenu2"
+            MinWidth="260"
+            MinHeight="{Binding Path=SetHeight, ElementName=MyuserControl}"
+            HorizontalAlignment="Left"
+            Background="{StaticResource Main_Color}" />
+        <Button
+            x:Name="CloseMenu"
+            Width="38.4"
+            Height="45"
+            MaxWidth="45"
+            Margin="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Panel.ZIndex="10000"
+            Click="Button_Click"
+            Style="{StaticResource btn_Menu}" />
+
+
+
+        <Border
+            x:Name="border"
+            BorderBrush="{StaticResource Main_Color}"
+            BorderThickness="1"
+            Style="{StaticResource border}" />
+
+    </Grid>
+
+
+
+</UserControl>

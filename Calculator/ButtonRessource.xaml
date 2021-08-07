@@ -4,21 +4,21 @@
     xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
     xmlns:local="clr-namespace:Calculator">
 
-
-
-
-
-    <Style x:Key="baseStyle" TargetType="Button">
-        <Setter Property="Background" Value="red" />
-    </Style>
-
-    <Style
-        x:Key="baseStyle2"
-        BasedOn="{StaticResource baseStyle}"
-        TargetType="Button">
-        <Setter Property="FontSize" Value="55" />
-    </Style>
-
+    <SolidColorBrush
+        x:Key="GrayColor"
+        Opacity="0.8"
+        Color="#FFE0DADA" />
+    <SolidColorBrush
+        x:Key="WhiteColor"
+        Opacity="0.8"
+        Color="White" />
+    <SolidColorBrush
+        x:Key="Main_Color"
+        Opacity="0.8"
+        Color="#FFCDCDCD" />
+    <SolidColorBrush x:Key="Hover_Color" Color="#FFACACAC" />
+    <Color x:Key="GraySB">#FFE0DADA</Color>
+    <Color x:Key="Hover">#FFACACAC</Color>
 
     <!--  ********************** Control Buttons Style **********************  -->
     <Style x:Key="BaseControlButtons" TargetType="Button">
@@ -32,12 +32,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
-    <Style
-        x:Key="Minimize"
-        BasedOn="{StaticResource BaseControlButtons}"
-        TargetType="Button">
+    <Style x:Key="Minimize" TargetType="Button">
         <!--<EventSetter Event="MouseLeftButtonDown" Handler="Minimize_MouseLeftButtonDown" />-->
         <Setter Property="Template">
             <Setter.Value>
@@ -60,40 +55,22 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
-                    <Setter Property="Background" Value="#9D9D9D" />
+                    <Setter Property="Background" Value="{StaticResource Hover_Color}" />
                 </Trigger.Setters>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
                 <Trigger.Setters>
-                    <Setter Property="Background" Value="#FFB7B8B7" />
+                    <Setter Property="Background" Value="{StaticResource Main_Color}" />
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style
-        x:Key="Maximize"
-        BasedOn="{StaticResource BaseControlButtons}"
-        TargetType="Button">
+    <Style x:Key="Maximize" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate x:Name="list" TargetType="{x:Type Button}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" />
-                        <!--<TextBlock
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="{TemplateBinding FontSize}"
-                            FontWeight="{TemplateBinding FontWeight}"
-                            Text="{TemplateBinding Content}" />-->
-                        <!--<Image
-                            Name="image"
-                            Width="25"
-                            Height="25"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Source="/images/Minimize.png" />-->
-
                         <Image
                             x:Name="btn_Image"
                             Width="25"
@@ -117,12 +94,12 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
-                    <Setter Property="Background" Value="#9D9D9D" />
+                    <Setter Property="Background" Value="{StaticResource Hover_Color}" />
                 </Trigger.Setters>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
                 <Trigger.Setters>
-                    <Setter Property="Background" Value="#FFB7B8B7" />
+                    <Setter Property="Background" Value="{StaticResource Main_Color}" />
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
@@ -159,7 +136,7 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
                 <Trigger.Setters>
-                    <Setter Property="Background" Value="#FFB7B8B7" />
+                    <Setter Property="Background" Value="{StaticResource Main_Color}" />
                 </Trigger.Setters>
             </Trigger>
         </Style.Triggers>
@@ -168,7 +145,7 @@
 
     <!--  **************************Menu &  history Buttons***************************  -->
     <Style x:Key="btn_hist" TargetType="Button">
-        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Background" Value="{StaticResource Main_Color}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -199,12 +176,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -226,12 +203,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -242,7 +219,7 @@
         </Setter>
 
 
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
                     <Setter Property="Background" Value="#9D9D9D" />
@@ -253,12 +230,12 @@
                     <Setter Property="Background" Value="#FFB7B8B7" />
                 </Trigger.Setters>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
         <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
 
     </Style>
     <Style x:Key="btn_OnTop" TargetType="Button">
-        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Background" Value="{StaticResource Main_Color}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -289,12 +266,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -316,12 +293,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -332,7 +309,7 @@
         </Setter>
 
 
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
                     <Setter Property="Background" Value="#9D9D9D" />
@@ -343,12 +320,12 @@
                     <Setter Property="Background" Value="#FFB7B8B7" />
                 </Trigger.Setters>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
         <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
 
     </Style>
     <Style x:Key="btn_Menu" TargetType="Button">
-        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Background" Value="{StaticResource Main_Color}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -365,7 +342,7 @@
                             VerticalAlignment="Center">
                             <Image.Style>
                                 <Style>
-                                    <Setter Property="Image.Source" Value="/images/Menu_64.png" />
+                                    <Setter Property="Image.Source" Value="/images/Menu_32.png" />
                                 </Style>
                             </Image.Style>
                         </Image>
@@ -379,13 +356,9 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
-                                    <ColorAnimation
-                                        Storyboard.TargetName="border"
-                                        Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
-                                        Duration="0:0:0.1" />
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -406,13 +379,9 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
-                                    <ColorAnimation
-                                        Storyboard.TargetName="border"
-                                        Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#FFB7B8B7"
-                                        Duration="0:0:0.1" />
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -422,7 +391,7 @@
         </Setter>
 
 
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.Setters>
                     <Setter Property="Background" Value="#9D9D9D" />
@@ -433,27 +402,27 @@
                     <Setter Property="Background" Value="#FFB7B8B7" />
                 </Trigger.Setters>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
         <!--<EventSetter Event="MouseLeftButtonDown" Handler="Full_MouseLeftButtonDown" />-->
 
     </Style>
     <!--  **********************       **********************  -->
     <Style x:Key="mz" TargetType="Button">
-        <Setter Property="Background" Value="#FFB7B8B7" />
+        <Setter Property="Background" Value="{StaticResource Main_Color}" />
         <Setter Property="FontWeight" Value="DemiBold" />
         <Setter Property="Margin" Value="1" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="15" />
     </Style>
     <Style x:Key="grey" TargetType="Button">
-        <Setter Property="Background" Value="#FFCBC4C4" />
+        <Setter Property="Background" Value="{StaticResource GrayColor}" />
         <Setter Property="Margin" Value="1.5" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
     <Style x:Key="white" TargetType="Button">
-        <Setter Property="Background" Value="White" />
+        <Setter Property="Background" Value="{StaticResource WhiteColor}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Margin" Value="1.5" />
         <Setter Property="FontSize" Value="20" />
@@ -496,12 +465,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -523,12 +492,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#FFB7B8B7"
+                                        To="#FFCDCDCD"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -540,7 +509,6 @@
 
 
     </Style>
-
     <Style
         x:Key="Grey"
         BasedOn="{StaticResource grey}"
@@ -570,12 +538,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -597,7 +565,7 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFCBC4C4"
+                                        To="{StaticResource GraySB}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
@@ -654,12 +622,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -681,7 +649,7 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#FFCBC4C4"
+                                        To="{StaticResource GraySB}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
@@ -698,9 +666,6 @@
 
 
     </Style>
-
-
-
     <Style
         x:Key="White"
         BasedOn="{StaticResource white}"
@@ -730,12 +695,12 @@
                                     <ColorAnimation
                                         Storyboard.TargetName="rectangle"
                                         Storyboard.TargetProperty="Fill.Color"
-                                        To="#9D9D9D"
+                                        To="{StaticResource Hover}"
                                         Duration="0:0:0.1" />
                                     <ColorAnimation
                                         Storyboard.TargetName="border"
                                         Storyboard.TargetProperty="BorderBrush.Color"
-                                        To="#808080"
+                                        To="#9D9D9D"
                                         Duration="0:0:0.1" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -774,8 +739,6 @@
 
 
     </Style>
-
-
     <Style
         x:Key="Brown"
         BasedOn="{StaticResource brown}"

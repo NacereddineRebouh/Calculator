@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Calculator.userControls.INotify;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
 namespace Calculator
@@ -9,12 +12,27 @@ namespace Calculator
 
     public partial class MainWindow : Window
     {
+        private INotifyHeightChanged hc;
+        public string FirstString { get; set; } = "br";
+        private double ah = 570;
+        public double ActualH
+        {
+            get { return ah; }
+            set { ah = value; }
+        }
 
 
         public MainWindow()
         {
+            hc = new INotifyHeightChanged(ah);
+            DataContext = hc;
             InitializeComponent();
-            this.DataContext = this;
+            Left = 400;
+            Top = 100;
+
+
+
+
 
 
         }
@@ -22,6 +40,7 @@ namespace Calculator
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //-----------Access window.xaml template's elements-----------//
+
 
 
             ControlTemplate i = Full.Template;
@@ -47,7 +66,6 @@ namespace Calculator
 
                     if (WindowState == WindowState.Maximized)
                     {
-
                         image.Source = new BitmapImage(new Uri(max, UriKind.RelativeOrAbsolute));
                         //srcButton.FindName("image22") = new BitmapImage(new Uri("yor image uri"));
                         WindowState = WindowState.Normal;
@@ -56,8 +74,12 @@ namespace Calculator
                     {
 
                         image.Source = new BitmapImage(new Uri(min, UriKind.RelativeOrAbsolute));
-                        WindowState = WindowState.Maximized;
+                        //WindowState = WindowState.Maximized;
 
+                        MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 10;
+                        MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth - 10;
+
+                        WindowState = WindowState.Maximized;
 
                     }
 
@@ -74,13 +96,128 @@ namespace Calculator
 
         }
 
-        private void WindowDrag(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        //private void WindowDrag(object sender, MouseButtonEventArgs e)
+        //{
+        //    ControlTemplate i = Full.Template;
+        //    Image image = i.FindName("btn_Image", Full) as Image;
+
+
+        //    string max = "/images/Maximize.png";
+        //    string min = "/images/Minimize.png";
+
+        //    if (WindowState == WindowState.Normal)
+        //    {
+        //        this.DragMove();
+        //    }
+        //    else
+        //    {
+        //        image.Source = new BitmapImage(new Uri(max, UriKind.RelativeOrAbsolute));
+        //        //WindowState = WindowState.Maximized;
+        //        WindowState = WindowState.Normal;
+        //        MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 30;
+        //        MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth - 30;
+        //        Left = 10; Top = 10;
+
+
+
+        //    }
+        //}
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //MessageBox.Show("meow");
-            this.DragMove();
+            ControlTemplate i = Full.Template;
+            Image image = i.FindName("btn_Image", Full) as Image;
+
+
+            string max = "/images/Maximize.png";
+            string min = "/images/Minimize.png";
+
+            if (e.ClickCount == 2)
+            {
+                if (WindowState == WindowState.Maximized)
+                {
+
+                    image.Source = new BitmapImage(new Uri(max, UriKind.RelativeOrAbsolute));
+                    //srcButton.FindName("image22") = new BitmapImage(new Uri("yor image uri"));
+                    WindowState = WindowState.Normal;
+                }
+                else
+                {
+
+                    image.Source = new BitmapImage(new Uri(min, UriKind.RelativeOrAbsolute));
+                    //WindowState = WindowState.Maximized;
+
+                    MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 10;
+                    MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth - 10;
+
+                    WindowState = WindowState.Maximized;
+
+                }
+
+
+
+
+            }
+            else if (e.ClickCount == 1)
+            {
+                if (WindowState == WindowState.Normal)
+                {
+                    this.DragMove();
+                }
+                else
+                {
+
+                    image.Source = new BitmapImage(new Uri(max, UriKind.RelativeOrAbsolute));
+                    //WindowState = WindowState.Maximized;
+                    WindowState = WindowState.Normal;
+                    MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 10;
+                    MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth - 10;
+                    Point p = e.GetPosition(this);
+                    double x = p.X;
+                    double y = p.Y;
+                    Left = x - 100;
+                    Top = y - 20;
+                    try { this.DragMove(); } catch { }
+
+                }
+
+            }
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ActualHeight >= 774 && ActualWidth >= 1310)
+            {
+                ControlTemplate i = Full.Template;
+                Image image = i.FindName("btn_Image", Full) as Image;
 
-        //style buttons
+
+                string min = "/images/Minimize.png";
+                image.Source = new BitmapImage(new Uri(min, UriKind.RelativeOrAbsolute));
+
+            }
+
+
+            //Change side menu size//
+            if (ActualHeight > 0)
+            {
+
+
+                SideMenu.SetHeight = ActualHeight - 30;
+
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //SideMenu.Width = 260;
+            WidenObject(260, TimeSpan.FromSeconds(0.2));
+        }
+
+        private void WidenObject(int newWidth, TimeSpan duration)
+        {
+            DoubleAnimation animation = new DoubleAnimation(newWidth, duration);
+            SideMenu.BeginAnimation(UserControl.WidthProperty, animation);
+        }
     }
 }
