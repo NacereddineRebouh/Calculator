@@ -1,4 +1,4 @@
-﻿using Calculator.userControls.INotify;
+﻿using Calculator.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,29 +12,13 @@ namespace Calculator
 
     public partial class MainWindow : Window
     {
-        private INotifyHeightChanged hc;
-        public string FirstString { get; set; } = "br";
-        private double ah = 570;
-        public double ActualH
-        {
-            get { return ah; }
-            set { ah = value; }
-        }
-
 
         public MainWindow()
         {
-            hc = new INotifyHeightChanged(ah);
-            DataContext = hc;
+            DataContext = new MainViewModel();
             InitializeComponent();
             Left = 400;
             Top = 100;
-
-
-
-
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -203,8 +187,9 @@ namespace Calculator
             {
 
 
-                SideMenu.SetHeight = ActualHeight - 30;
-
+                SideMenu.Height = ActualHeight - 30;
+                //StandardPage.Height = 62.5 * ActualHeight / 100;
+                //StandardPage.Width = ActualWidth;
             }
         }
 
@@ -213,6 +198,7 @@ namespace Calculator
             //SideMenu.Width = 260;
             WidenObject(260, TimeSpan.FromSeconds(0.2));
         }
+
 
         private void WidenObject(int newWidth, TimeSpan duration)
         {

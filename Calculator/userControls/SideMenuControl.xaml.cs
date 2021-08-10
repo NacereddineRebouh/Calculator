@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 namespace Calculator.userControls
@@ -13,19 +14,22 @@ namespace Calculator.userControls
 
         public SideMenuControl()
         {
+
             InitializeComponent();
 
 
         }
 
-        //public int SetWidth
-        //{
-        //    get { return (int)GetValue(SetWidthProperty); }
-        //    set { SetValue(SetWidthProperty, value); }
-        //}
 
-        //public static readonly DependencyProperty SetWidthProperty =
-        //   DependencyProperty.Register(nameof(SetWidth), typeof(int), typeof(SideMenuControl), new PropertyMetadata(0));
+
+        public ICommand updateViewCommand
+        {
+            get { return (ICommand)GetValue(updateViewCommandProperty); }
+            set { SetValue(updateViewCommandProperty, value); }
+        }
+        public static readonly DependencyProperty updateViewCommandProperty =
+            DependencyProperty.Register("updateViewCommand", typeof(ICommand), typeof(SideMenuControl), null);
+
 
 
         public double SetHeight
@@ -35,25 +39,25 @@ namespace Calculator.userControls
         }
 
 
-
         public static readonly DependencyProperty SetHeightProperty =
             DependencyProperty.Register("SetHeight", typeof(double), typeof(SideMenuControl), new PropertyMetadata(0.0));
 
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button srcButton = e.Source as Button;
-            //MessageBox.Show(srcButton.Name);
-            //this.Width = 0;
-            WidenObject(0, TimeSpan.FromSeconds(0.2));
-            //CloseMenu.Visibility = Visibility.Collapsed;
+
+            ShortenObject(0, TimeSpan.FromSeconds(0.2));
 
         }
 
-        private void WidenObject(int newWidth, TimeSpan duration)
+
+        private void ShortenObject(int newWidth, TimeSpan duration)
         {
             DoubleAnimation animation = new DoubleAnimation(newWidth, duration);
-            this.BeginAnimation(UserControl.WidthProperty, animation);
+            MyuserControl.BeginAnimation(UserControl.WidthProperty, animation);
         }
+
+
     }
 }

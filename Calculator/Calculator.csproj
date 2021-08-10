@@ -36,4 +36,8 @@
     <Resource Include="images\OnTop.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
+
 </Project>

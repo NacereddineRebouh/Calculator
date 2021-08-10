@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Calculator.userControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="MyuserControl"
-    Width="260"
+    Width="0"
     Height="{Binding Path=SetHeight, ElementName=MyuserControl}"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -30,23 +30,41 @@
     <Grid
         x:Name="BaseGrid"
         MinWidth="260"
+        MinHeight="570"
         HorizontalAlignment="Center"
-        Background="Transparent">
+        Background="{StaticResource Main_Color}">
 
 
         <!--<Rectangle
-                x:Name="sideMenu1"
-                Width="{Binding SetWidth2}"
-                Height="45"
-                Margin="38.4,0,0,0"
-                HorizontalAlignment="Left"
-                Fill="{StaticResource Main_Color}" />-->
-        <Grid
-            x:Name="sideMenu2"
-            MinWidth="260"
-            MinHeight="{Binding Path=SetHeight, ElementName=MyuserControl}"
+            x:Name="sideMenu1"
+            Width="260"
+            Height="45"
             HorizontalAlignment="Left"
-            Background="{StaticResource Main_Color}" />
+            Fill="{StaticResource Main_Color}" />-->
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="{StaticResource Main_Color}"
+            Orientation="Vertical">
+            <Button
+                Width="180"
+                Margin="10,80,0,0"
+                Background="{StaticResource Main_Color}"
+                Command="{Binding updateViewCommand}"
+                CommandParameter="Standard"
+                Content="Standard"
+                FontSize="15" />
+            <Button
+                Width="180"
+                Margin="10,10,0,10"
+                Background="{StaticResource Main_Color}"
+                Command="{Binding updateViewCommand}"
+                CommandParameter="Scientific"
+                Content="Scientific"
+                FontSize="15" />
+        </StackPanel>
+
         <Button
             x:Name="CloseMenu"
             Width="38.4"
