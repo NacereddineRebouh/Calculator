@@ -51,7 +51,8 @@
                 Width="180"
                 Margin="10,80,0,0"
                 Background="{StaticResource Main_Color}"
-                Command="{Binding updateViewCommand}"
+                Click="Close_SideMenu"
+                Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
                 CommandParameter="Standard"
                 Content="Standard"
                 FontSize="15" />
@@ -59,7 +60,8 @@
                 Width="180"
                 Margin="10,10,0,10"
                 Background="{StaticResource Main_Color}"
-                Command="{Binding updateViewCommand}"
+                Click="Close_SideMenu"
+                Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
                 CommandParameter="Scientific"
                 Content="Scientific"
                 FontSize="15" />

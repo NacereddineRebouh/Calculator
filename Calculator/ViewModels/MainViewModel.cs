@@ -5,7 +5,7 @@ namespace Calculator.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private BaseViewModel _selectedView;
+        private BaseViewModel _selectedView = new StandardViewModel();
 
         public BaseViewModel SelectedView
         {

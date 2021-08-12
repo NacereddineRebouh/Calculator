@@ -196,13 +196,16 @@ namespace Calculator
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //SideMenu.Width = 260;
-            WidenObject(260, TimeSpan.FromSeconds(0.2));
+            WidenObject(260, TimeSpan.FromSeconds(0.3));
         }
 
 
         private void WidenObject(int newWidth, TimeSpan duration)
         {
             DoubleAnimation animation = new DoubleAnimation(newWidth, duration);
+            QuarticEase e = new QuarticEase();
+            e.EasingMode = EasingMode.EaseOut;
+            animation.EasingFunction = e;
             SideMenu.BeginAnimation(UserControl.WidthProperty, animation);
         }
     }

@@ -47,7 +47,7 @@ namespace Calculator.userControls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            ShortenObject(0, TimeSpan.FromSeconds(0.2));
+            ShortenObject(0, TimeSpan.FromSeconds(0.1));
 
         }
 
@@ -58,6 +58,9 @@ namespace Calculator.userControls
             MyuserControl.BeginAnimation(UserControl.WidthProperty, animation);
         }
 
-
+        private void Close_SideMenu(object sender, RoutedEventArgs e)
+        {
+            ShortenObject(0, TimeSpan.FromSeconds(0.1));
+        }
     }
 }

@@ -12,6 +12,8 @@
     MinWidth="350"
     MinHeight="600"
     AllowsTransparency="True"
+    BorderBrush="DimGray"
+    BorderThickness="1"
     ResizeMode="CanResize"
     SizeChanged="Window_SizeChanged"
     WindowStartupLocation="Manual"
@@ -249,7 +251,10 @@
                 Grid.Row="1"
                 Margin="2,0,2,2"
                 Source="/Pages/StandardPage.xaml" />-->
-            <ContentControl Grid.Row="1" Content="{Binding SelectedView}" />
+            <ContentControl
+                Grid.Row="1"
+                Margin="2,0,2,0"
+                Content="{Binding SelectedView}" />
             <!--<Grid Grid.Row="1" Margin="2,0,2,2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
