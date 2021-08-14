@@ -5,7 +5,7 @@
     xmlns:Uc="clr-namespace:Calculator.userControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Name="w"
+    x:Name="Mw"
     Title="MainWindow"
     Width="350"
     Height="600"
@@ -95,8 +95,8 @@
                         <ColumnDefinition Width="40" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.8*" MaxHeight="35" />
-                        <RowDefinition Height="1.2*" MaxHeight="45" />
+                        <RowDefinition MaxHeight="30" />
+                        <RowDefinition MaxHeight="45" />
                     </Grid.RowDefinitions>
 
                     <!--  //Title Area//  -->
@@ -246,192 +246,37 @@
                         Style="{StaticResource Mz}" />
                 </Grid>
             </Grid>
-            <!--<Frame
-                x:Name="StandardPage"
-                Grid.Row="1"
-                Margin="2,0,2,2"
-                Source="/Pages/StandardPage.xaml" />-->
             <ContentControl
                 Grid.Row="1"
                 Margin="2,0,2,2"
                 Content="{Binding SelectedView}" />
-            <!--<Grid Grid.Row="1" Margin="2,0,2,2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Content="%"
-                    Style="{StaticResource Grey}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Content="CE"
-                    Style="{StaticResource Grey}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Content="C"
-                    Style="{StaticResource Grey}" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="3"
-                    Content="1"
-                    Style="{StaticResource Grey}" />
-
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Content="1/x"
-                    Style="{StaticResource Grey2}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Content="x^2"
-                    Style="{StaticResource Grey2}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Content="\sqrt[2]{x}"
-                    Style="{StaticResource Grey2}" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="3"
-                    Content="1"
-                    Style="{StaticResource Grey}" />
-
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Content="7"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Content="8"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Content="9"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Padding="0,-100,0,-90"
-                    Content="×"
-                    FontSize="45"
-                    FontWeight="Thin"
-                    Style="{StaticResource Grey}" />
-
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Content="4"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Content="5"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    Content="6"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    Padding="0,-100,0,-90"
-                    Content="-"
-                    FontSize="45"
-                    FontWeight="Thin"
-                    Style="{StaticResource Grey}" />
-
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Content="1"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Content="2"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="2"
-                    Content="3"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="3"
-                    Padding="0,-100,0,-95"
-                    Content="+"
-                    FontSize="40"
-                    FontWeight="Thin"
-                    Style="{StaticResource Grey}" />
-
-                <Button
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Content="+/-"
-                    FontSize="25"
-                    FontWeight="Regular"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Content="0"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="5"
-                    Grid.Column="2"
-                    Content=","
-                    FontSize="25"
-                    FontWeight="Normal"
-                    Style="{StaticResource White}" />
-                <Button
-                    Grid.Row="5"
-                    Grid.Column="3"
-                    Padding="0,-100,0,-95"
-                    Content="="
-                    FontSize="45"
-                    FontWeight="Light"
-                    Style="{StaticResource Brown}" />
-
-            </Grid>-->
 
         </Grid>
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.6*" MaxWidth="400" />
-                <!--<ColumnDefinition Width="0.5*" />-->
+                <ColumnDefinition Width="260" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MinHeight="30" MaxHeight="35" />
+                <RowDefinition MinHeight="30" />
                 <RowDefinition MinHeight="570" />
             </Grid.RowDefinitions>
             <Uc:SideMenuControl
                 x:Name="SideMenu"
                 Grid.Row="1"
+                Width="0"
+                MinHeight="570"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                VerticalAlignment="Stretch"
                 updateViewCommand="{Binding UpdateViewCommand}" />
+            <Grid
+                x:Name="ShadowGrid"
+                Grid.Row="1"
+                Grid.Column="1"
+                x:FieldModifier="public"
+                Style="{StaticResource ShadowG}"
+                Visibility="Hidden" />
 
 
         </Grid>

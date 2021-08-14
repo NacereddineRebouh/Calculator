@@ -13,9 +13,13 @@ namespace Calculator
     public partial class MainWindow : Window
     {
 
+
         public MainWindow()
         {
             DataContext = new MainViewModel();
+
+            //MainWindow w = this;
+            //DataContext = w;
             InitializeComponent();
             Left = 400;
             Top = 100;
@@ -43,6 +47,7 @@ namespace Calculator
                     // Minimize Window
 
                     WindowState = WindowState.Minimized;
+                    //SideMenu.Width = ActualWidth;
                     break;
 
                 case "Full":
@@ -170,6 +175,8 @@ namespace Calculator
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            Console.WriteLine("here-----------------------------------");
+
             if (ActualHeight >= 774 && ActualWidth >= 1310)
             {
                 ControlTemplate i = Full.Template;
@@ -186,28 +193,40 @@ namespace Calculator
             if (ActualHeight > 0)
             {
 
-                SideMenu.Width = ActualWidth;
-                SideMenu.Height = ActualHeight - 30;
+
+                //SideMenu.Height = ActualHeight - 30;
                 //StandardPage.Height = 62.5 * ActualHeight / 100;
                 //StandardPage.Width = ActualWidth;
             }
+
+            //if (ActualWidth > 350)
+            //{
+
+            //    SideMenu.MinWidth = ActualWidth;
+            //    SideMenu.Width = ActualWidth;
+
+            //}
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //SideMenu.Width = 260;
-            SideMenu.Focus();
-            WidenObject(260, TimeSpan.FromSeconds(0.3));
+
+            WidenObject(ActualWidth, TimeSpan.FromSeconds(0.3));
         }
 
 
-        private void WidenObject(int newWidth, TimeSpan duration)
+        private void WidenObject(double newWidth, TimeSpan duration)
+
         {
+
             DoubleAnimation animation = new DoubleAnimation(newWidth, duration);
             QuarticEase e = new QuarticEase();
             e.EasingMode = EasingMode.EaseOut;
             animation.EasingFunction = e;
             SideMenu.BeginAnimation(UserControl.WidthProperty, animation);
+            ShadowGrid.Visibility = Visibility.Visible;
+
         }
 
 

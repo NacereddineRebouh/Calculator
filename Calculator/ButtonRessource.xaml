@@ -21,6 +21,23 @@
     <Color x:Key="GraySB">#FFE0DADA</Color>
     <Color x:Key="Hover">#FFACACAC</Color>
 
+    <!--  ********************** SideMenu SideShadowBlur **********************  -->
+
+    <Style x:Key="ShadowG" TargetType="Grid">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect
+                    BlurRadius="60"
+                    Opacity="0.9"
+                    ShadowDepth="10" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Opacity="0.25" Color="Black" />
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--  ********************** Control Buttons Style **********************  -->
     <Style x:Key="BaseControlButtons" TargetType="Button">
         <Setter Property="Background" Value="#FFB7B8B7" />

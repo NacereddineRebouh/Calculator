@@ -11,7 +11,7 @@ namespace Calculator.userControls
     /// </summary>
     public partial class SideMenuControl : UserControl
     {
-
+        //converter :convert width to bool
         public SideMenuControl()
         {
 
@@ -32,15 +32,15 @@ namespace Calculator.userControls
 
 
 
-        public double SetHeight
+        public double SetWidth
         {
-            get { return (double)GetValue(SetHeightProperty); }
-            set { SetValue(SetHeightProperty, value); }
+            get { return (double)GetValue(SetWidthProperty); }
+            set { SetValue(SetWidthProperty, value); }
         }
 
 
-        public static readonly DependencyProperty SetHeightProperty =
-            DependencyProperty.Register("SetHeight", typeof(double), typeof(SideMenuControl), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty SetWidthProperty =
+            DependencyProperty.Register("SetWidth", typeof(double), typeof(SideMenuControl), new PropertyMetadata(0.0));
 
 
 
@@ -54,8 +54,14 @@ namespace Calculator.userControls
 
         private void ShortenObject(int newWidth, TimeSpan duration)
         {
+            //MinWidth = 0;
+
             DoubleAnimation animation = new DoubleAnimation(newWidth, duration);
             MyuserControl.BeginAnimation(UserControl.WidthProperty, animation);
+
+
+
+
         }
 
         private void Close_SideMenu(object sender, RoutedEventArgs e)
