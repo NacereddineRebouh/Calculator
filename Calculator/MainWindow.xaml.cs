@@ -186,7 +186,7 @@ namespace Calculator
             if (ActualHeight > 0)
             {
 
-
+                SideMenu.Width = ActualWidth;
                 SideMenu.Height = ActualHeight - 30;
                 //StandardPage.Height = 62.5 * ActualHeight / 100;
                 //StandardPage.Width = ActualWidth;
@@ -196,6 +196,7 @@ namespace Calculator
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //SideMenu.Width = 260;
+            SideMenu.Focus();
             WidenObject(260, TimeSpan.FromSeconds(0.3));
         }
 
@@ -208,5 +209,7 @@ namespace Calculator
             animation.EasingFunction = e;
             SideMenu.BeginAnimation(UserControl.WidthProperty, animation);
         }
+
+
     }
 }

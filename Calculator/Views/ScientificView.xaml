@@ -4,15 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Calculator.View"
+    xmlns:l="clr-namespace:Calculator"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="UC"
     d:DesignHeight="350"
     d:DesignWidth="600"
     mc:Ignorable="d">
     <UserControl.Resources>
+        <l:PopupConverter x:Key="valueC" />
         <SolidColorBrush x:Key="MainColor" Color="#FFD3D1D1" />
         <Color x:Key="MainColorSB">#FFD3D1D1</Color>
-        <ControlTemplate x:Key="FonctionTemplate" TargetType="Button">
+        <ControlTemplate x:Key="FonctionTemplate" TargetType="ToggleButton">
             <Border
                 Name="ButtonBorder"
                 BorderBrush="Transparent"
@@ -35,8 +37,8 @@
                         Grid.Column="1"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="20"
-                        FontWeight="Light"
+                        FontSize="15"
+                        FontWeight="Normal"
                         Text="Fonction" />
                     <Path
                         Name="Arrow"
@@ -80,12 +82,12 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation
-                                Storyboard.TargetName="ComboGrid"
+                                Storyboard.TargetName="ButtonGrid"
                                 Storyboard.TargetProperty="Background.Color"
                                 To="{StaticResource MainColorSB}"
                                 Duration="0:0:0.1" />
                             <ColorAnimation
-                                Storyboard.TargetName="ComboBorder"
+                                Storyboard.TargetName="ButtonBorder"
                                 Storyboard.TargetProperty="BorderBrush.Color"
                                 To="Transparent"
                                 Duration="0:0:0.1" />
@@ -94,7 +96,7 @@
                 </EventTrigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <ControlTemplate x:Key="TrigoTemplate" TargetType="Button">
+        <ControlTemplate x:Key="TrigoTemplate" TargetType="ToggleButton">
             <Border
                 Name="ButtonBorder"
                 BorderBrush="Transparent"
@@ -117,12 +119,13 @@
                         </Image.Style>
                     </Image>
                     <TextBlock
+                        x:Name="tri"
                         Grid.Column="1"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        FontSize="20"
-                        FontWeight="Light"
-                        Text="Fonction" />
+                        FontSize="15"
+                        FontWeight="Normal"
+                        Text="Trigonometry" />
                     <Path
                         Name="Arrow"
                         Grid.Column="2"
@@ -165,12 +168,12 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation
-                                Storyboard.TargetName="ComboGrid"
+                                Storyboard.TargetName="ButtonGrid"
                                 Storyboard.TargetProperty="Background.Color"
                                 To="{StaticResource MainColorSB}"
                                 Duration="0:0:0.1" />
                             <ColorAnimation
-                                Storyboard.TargetName="ComboBorder"
+                                Storyboard.TargetName="ButtonBorder"
                                 Storyboard.TargetProperty="BorderBrush.Color"
                                 To="Transparent"
                                 Duration="0:0:0.1" />
@@ -202,12 +205,28 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.ColumnSpan="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="255" />
-                    <ColumnDefinition MaxWidth="190" />
+                    <ColumnDefinition MaxWidth="200" />
+                    <ColumnDefinition MaxWidth="100" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Template="{StaticResource TrigoTemplate}" />
-                <Button Grid.Column="1" Template="{StaticResource FonctionTemplate}" />
+
+                <ToggleButton
+                    x:Name="TrigoButton"
+                    Grid.Column="0"
+                    Click="Button_Click"
+                    IsHitTestVisible="{Binding Path=IsOpen, ElementName=TrigoPopup, Converter={StaticResource valueC}}"
+                    Template="{StaticResource TrigoTemplate}" />
+                <!--<Button
+                    Grid.Column="0"
+                    Click="Button_Click"
+                    x:Name="TrigoButton"
+
+                    Template="{StaticResource TrigoTemplate}" />-->
+                <ToggleButton
+                    x:Name="FonctionButton"
+                    Grid.Column="1"
+                    IsHitTestVisible="{Binding Path=IsOpen, ElementName=FoncPopup, Converter={StaticResource valueC}}"
+                    Template="{StaticResource FonctionTemplate}" />
                 <!--<ToggleButton Grid.Column="2" Template="{StaticResource TB}" />-->
                 <!--  Style="{DynamicResource ComboBoxStyle1}"  -->
 
@@ -407,11 +426,124 @@
                 Style="{StaticResource Brown}" />
 
         </Grid>
-        <Grid
+        <Popup
+            x:Name="TrigoPopup"
             Width="250"
-            Height="150"
-            Background="LightGray"
-            Visibility="Collapsed" />
+            Height="100"
+            HorizontalOffset="50"
+            IsOpen="{Binding ElementName=TrigoButton, Path=IsChecked, Mode=TwoWay}"
+            PlacementTarget="{Binding ElementName=TrigoButton}"
+            PopupAnimation="Fade"
+            StaysOpen="False"
+            VerticalOffset="0">
+            <Border BorderBrush="#808080" BorderThickness="1">
+                <Grid Background="{StaticResource MainColor}">
+                    <Grid
+                        Width="250"
+                        Height="100"
+                        Margin="0,0,2,2"
+                        Background="{StaticResource MainColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="3"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </Popup>
+        <Popup
+            x:Name="FoncPopup"
+            Width="190"
+            Height="100"
+            HorizontalOffset="35"
+            IsOpen="{Binding ElementName=FonctionButton, Path=IsChecked, Mode=TwoWay}"
+            PlacementTarget="{Binding ElementName=FonctionButton}"
+            PopupAnimation="Slide"
+            StaysOpen="False"
+            VerticalOffset="0">
+            <Border BorderBrush="#808080" BorderThickness="1">
+                <Grid Background="{StaticResource MainColor}">
+                    <Grid
+                        Width="190"
+                        Height="100"
+                        Margin="0,0,2,2"
+                        Background="{StaticResource MainColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="5"
+                            Style="{StaticResource Grey}" />
+
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Content="1"
+                            Style="{StaticResource Grey}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </Popup>
     </Grid>
 
 </UserControl>

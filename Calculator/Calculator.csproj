@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="images\1.jpg" />
+    <None Remove="images\Del.png" />
+    <None Remove="images\div.png" />
     <None Remove="images\History.png" />
     <None Remove="images\Maximize.png" />
     <None Remove="images\Menu.png" />
@@ -17,6 +19,7 @@
     <None Remove="images\Menu_Grey.png" />
     <None Remove="images\Minimize.png" />
     <None Remove="images\OnTop.png" />
+    <None Remove="images\Triginometry.png" />
     <None Remove="moon.jpg" />
   </ItemGroup>
 
@@ -25,6 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\Del.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\div.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\History.png" />
     <Resource Include="images\Maximize.png" />
     <Resource Include="images\Menu.png" />
@@ -34,6 +43,7 @@
     <Resource Include="images\Menu_Grey.png" />
     <Resource Include="images\Minimize.png" />
     <Resource Include="images\OnTop.png" />
+    <Resource Include="images\Triginometry.png" />
   </ItemGroup>
 
   <ItemGroup>

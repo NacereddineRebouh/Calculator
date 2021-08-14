@@ -253,7 +253,7 @@
                 Source="/Pages/StandardPage.xaml" />-->
             <ContentControl
                 Grid.Row="1"
-                Margin="2,0,2,0"
+                Margin="2,0,2,2"
                 Content="{Binding SelectedView}" />
             <!--<Grid Grid.Row="1" Margin="2,0,2,2">
                 <Grid.RowDefinitions>
@@ -420,7 +420,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.6*" MaxWidth="400" />
-                <ColumnDefinition Width="0.5*" />
+                <!--<ColumnDefinition Width="0.5*" />-->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition MinHeight="30" MaxHeight="35" />

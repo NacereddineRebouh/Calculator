@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:Calculator.userControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="MyuserControl"
-    Width="0"
+    Width="350"
     Height="{Binding Path=SetHeight, ElementName=MyuserControl}"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -28,65 +28,70 @@
     </UserControl.Resources>
 
     <Grid
-        x:Name="BaseGrid"
-        MinWidth="260"
-        MinHeight="570"
-        HorizontalAlignment="Center"
-        Background="{StaticResource Main_Color}">
+        Width="{Binding Path=Width, ElementName=MyuserControl}"
+        HorizontalAlignment="Left"
+        Background="Red">
+        <Grid
+            x:Name="BaseGrid"
+            MinWidth="260"
+            MinHeight="570"
+            HorizontalAlignment="Left"
+            Background="{StaticResource Main_Color}">
 
 
-        <!--<Rectangle
+            <!--<Rectangle
             x:Name="sideMenu1"
             Width="260"
             Height="45"
             HorizontalAlignment="Left"
             Fill="{StaticResource Main_Color}" />-->
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="{StaticResource Main_Color}"
-            Orientation="Vertical">
-            <Button
-                Width="180"
-                Margin="10,80,0,0"
+            <StackPanel
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
                 Background="{StaticResource Main_Color}"
-                Click="Close_SideMenu"
-                Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
-                CommandParameter="Standard"
-                Content="Standard"
-                FontSize="15" />
+                Orientation="Vertical">
+                <Button
+                    Width="180"
+                    Margin="10,80,0,0"
+                    Background="{StaticResource Main_Color}"
+                    Click="Close_SideMenu"
+                    Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
+                    CommandParameter="Standard"
+                    Content="Standard"
+                    FontSize="15" />
+                <Button
+                    Width="180"
+                    Margin="10,10,0,10"
+                    Background="{StaticResource Main_Color}"
+                    Click="Close_SideMenu"
+                    Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
+                    CommandParameter="Scientific"
+                    Content="Scientific"
+                    FontSize="15" />
+            </StackPanel>
+
             <Button
-                Width="180"
-                Margin="10,10,0,10"
-                Background="{StaticResource Main_Color}"
-                Click="Close_SideMenu"
-                Command="{Binding Path=updateViewCommand, ElementName=MyuserControl}"
-                CommandParameter="Scientific"
-                Content="Scientific"
-                FontSize="15" />
-        </StackPanel>
-
-        <Button
-            x:Name="CloseMenu"
-            Width="38.4"
-            Height="45"
-            MaxWidth="45"
-            Margin="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Panel.ZIndex="10000"
-            Click="Button_Click"
-            Style="{StaticResource btn_Menu}" />
+                x:Name="CloseMenu"
+                Width="38.4"
+                Height="45"
+                MaxWidth="45"
+                Margin="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Panel.ZIndex="10000"
+                Click="Button_Click"
+                Style="{StaticResource btn_Menu}" />
 
 
 
-        <Border
-            x:Name="border"
-            BorderBrush="{StaticResource Main_Color}"
-            BorderThickness="1"
-            Style="{StaticResource border}" />
+            <Border
+                x:Name="border"
+                BorderBrush="{StaticResource Main_Color}"
+                BorderThickness="1"
+                Style="{StaticResource border}" />
 
+        </Grid>
     </Grid>
 
 
